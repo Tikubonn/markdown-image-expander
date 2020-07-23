@@ -1,0 +1,3 @@
+build/*
+dist/*
+markdown_image_expander.egg-info/*
