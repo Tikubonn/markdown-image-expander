@@ -14,18 +14,18 @@ setup(
   author="tikubonn",
   author_email="https://twitter.com/tikubonn",
   url="https://github.com/tikubonn/markdown-image-expander",
-  py_modules=(
+  py_modules=[
     "markdown_image_expander",
-  ),
-  install_requires=(
+  ],
+  install_requires=[
     "markdown>=3.0",
-  ),
-  tests_require=(
-    "bs4==0.0.1"
-  ),
-  classifiers=(
+  ],
+  tests_require=[
+    "bs4==0.0.1",
+  ],
+  classifiers=[
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.7",
     "License :: OSI Approved :: MIT License",
-  ),
+  ],
 )

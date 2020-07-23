@@ -27,20 +27,30 @@ class ImageExpander (Treeprocessor):
         dictionary[ele] = index, p 
     return dictionary[element]
 
+  def similar_as_empty (self, element):
+
+    """
+    if all text are whitespace or empty, return true, otherwise false.
+    """
+
+    for text in element.itertext():
+      if text.strip():
+        return False
+    else:
+      return True 
+
   def should_expand (self, element):
 
     """
     if <p> contain image element only, return true, otherwise false.
     """
 
-    texts = list(element.itertext())
     eles = element.findall("./*")
-    if not texts and eles:
+    if self.similar_as_empty(element) and eles:
       for ele in eles:
         if ele.tag == "a":
-          texts = list(ele.itertext())
           es = ele.findall("./*")
-          if not texts and es:
+          if self.similar_as_empty(ele) and es:
             for e in es:
               if e.tag not in ("img", "figure"):
                 return False 

@@ -1,7 +1,7 @@
 
 import textwrap
 from bs4 import BeautifulSoup as Bs
-from unittest import TestCase 
+from unittest import TestCase
 from markdown import Markdown
 from markdown_image_expander import MarkdownImageExpander
 
@@ -21,6 +21,23 @@ class ConvertionTest (TestCase):
     )
 
   def test2 (self):
+    md = Markdown(extensions=[MarkdownImageExpander()])
+    source = """
+    ![](example.png)
+    ![](example.png)
+    ![](example.png)
+    """
+    mustbe = """
+    <img alt="" src="example.png">
+    <img alt="" src="example.png">
+    <img alt="" src="example.png">
+    """
+    self.assertEqual(
+      Bs(md.convert(textwrap.dedent(source)), "html.parser").prettify().replace("\n", ""),
+      Bs(textwrap.dedent(mustbe), "html.parser").prettify().replace("\n", "")
+    )
+
+  def test3 (self):
     md = Markdown(extensions=[MarkdownImageExpander()])
     source = """
     example text
